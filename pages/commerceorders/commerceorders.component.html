@@ -1,0 +1,24 @@
+<wtable title="Commerceorders" [columns]="columns" [config]="config" [rows]="rows">
+	<ng-template cell="status" let-element>
+		<wselect [select]="element.status" (modelChange)="setStatus(element, $event)"
+			[items]="['new', 'ordered', 'preparing', 'sent', 'completed']"></wselect>
+	</ng-template>
+	<ng-template cell="id" let-element>
+		{{element._id}}
+	</ng-template>
+	<ng-template cell="products" let-element>
+		<div *ngFor="let product of element.products">
+			{{product?.product?.name}} {{product?.product?.price}} грн x {{product?.quantity}} шт
+		</div>
+	</ng-template>
+	<ng-template cell="information" let-element>
+		<ng-container *ngIf="element.delivery">
+			<div>Е-пошта: {{element.delivery.email}}</div>
+			<div>Ім'я: {{element.delivery.firstname}}</div>
+			<div>Прізвище: {{element.delivery.lastname}}</div>
+			<div>Місто: {{element.delivery.city}}</div>
+			<div>Нова пошта: {{element.delivery.postoffice}}</div>
+			<div>Телефон: {{element.delivery.phone}}</div>
+		</ng-container>
+	</ng-template>
+</wtable>
