@@ -7,6 +7,7 @@ import { TranslateService } from 'src/app/core/modules/translate/translate.servi
 import { FormInterface } from 'src/app/core/modules/form/interfaces/form.interface';
 import { commerceserviceFormComponents } from '../../formcomponents/commerceservice.formcomponents';
 import { Router } from '@angular/router';
+import { environment } from 'src/environments/environment';
 
 @Component({
 	templateUrl: './commerceservices.component.html',
@@ -18,7 +19,7 @@ export class CommerceservicesComponent {
 
 	commerce = this._router.url.includes('/commerce/commerceservices/')
 		? this._router.url.replace('/commerce/commerceservices/', '')
-		: '';
+		: environment.commerceId || '';
 
 	form: FormInterface = this._form.getForm(
 		'commerceservice',

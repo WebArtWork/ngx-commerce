@@ -8,6 +8,7 @@ import { FormInterface } from 'src/app/core/modules/form/interfaces/form.interfa
 import { commerceorderFormComponents } from '../../formcomponents/commerceorder.formcomponents';
 import { Router } from '@angular/router';
 import { Commerceproduct } from 'src/app/modules/commerce/interfaces/commerceproduct.interface';
+import { environment } from 'src/environments/environment';
 
 @Component({
 	templateUrl: './commerceorders.component.html',
@@ -19,7 +20,7 @@ export class CommerceordersComponent {
 
 	commerce = this._router.url.includes('/commerce/commerceorders/')
 		? this._router.url.replace('/commerce/commerceorders/', '')
-		: '';
+		: environment.commerceId || '';
 
 	form: FormInterface = this._form.getForm(
 		'commerceorder',
@@ -88,9 +89,12 @@ export class CommerceordersComponent {
 		// 	},
 		// ]
 	};
+
 	setStatus(order: Commerceorder, status: string) {
 		order.status = status;
+
 		const newOrder = JSON.parse(JSON.stringify(order));
+
 		newOrder.products.forEach(
 			(product: {
 				product: Commerceproduct | string;
@@ -99,11 +103,13 @@ export class CommerceordersComponent {
 				productquantity: { _id: string } | string;
 			}) => {
 				product.product = (product.product as Commerceproduct)._id;
+
 				product.productquantity = (
 					product.productquantity as { _id: string }
 				)._id;
 			}
 		);
+
 		this.update(newOrder);
 	}
 
@@ -134,6 +140,7 @@ export class CommerceordersComponent {
 							if (this.commerce) {
 								commerceorder.commerce = this.commerce;
 							}
+
 							this._commerceorderService.create(commerceorder);
 						}
 					} else {

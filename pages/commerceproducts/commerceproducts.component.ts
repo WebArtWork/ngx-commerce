@@ -9,6 +9,7 @@ import { commerceproductFormComponents } from '../../formcomponents/commerceprod
 import { Router } from '@angular/router';
 import { Commercetag } from 'src/app/modules/commerce/interfaces/commercetag.interface';
 import { CommercetagService } from 'src/app/modules/commerce/services/commercetag.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
 	templateUrl: './commerceproducts.component.html',
@@ -21,7 +22,7 @@ export class CommerceproductsComponent {
 
 	commerce = this._router.url.includes('/commerce/commerceproducts/')
 		? this._router.url.replace('/commerce/commerceproducts/', '')
-		: '';
+		: environment.commerceId || '';
 
 	form: FormInterface = this._form.getForm('commerceproduct', {
 		formId: 'commerceproduct',

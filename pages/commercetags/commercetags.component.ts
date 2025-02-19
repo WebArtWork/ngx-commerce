@@ -7,6 +7,7 @@ import { TranslateService } from 'src/app/core/modules/translate/translate.servi
 import { FormInterface } from 'src/app/core/modules/form/interfaces/form.interface';
 import { commercetagFormComponents } from '../../formcomponents/commercetag.formcomponents';
 import { ActivatedRoute, Router } from '@angular/router';
+import { environment } from 'src/environments/environment';
 
 @Component({
 	templateUrl: './commercetags.component.html',
@@ -178,10 +179,14 @@ export class CommercetagsComponent {
 			if (params['parent']) {
 				this.parent = params['parent'];
 			}
+
 			if (params['commerce_id']) {
 				this.commerce = params['commerce_id'];
 			}
+
+			this.commerce = this.commerce || environment.commerceId;
 		});
+
 		this.setTags();
 	}
 

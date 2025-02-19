@@ -52,10 +52,12 @@ export class CommerceproductquantitiesComponent {
 					if (this.store) {
 						(created as Commerceproductquantity).store = this.store;
 					}
+
 					if (this.warehouse) {
 						(created as Commerceproductquantity).warehouse =
 							this.warehouse;
 					}
+
 					this._commerceproductquantityService.create(
 						created as Commerceproductquantity
 					);
@@ -164,13 +166,16 @@ export class CommerceproductquantitiesComponent {
 							if (this.product) {
 								commerceproductquantity.product = this.product;
 							}
+
 							if (this.store) {
 								commerceproductquantity.store = this.store;
 							}
+
 							if (this.warehouse) {
 								commerceproductquantity.warehouse =
 									this.warehouse;
 							}
+
 							this._commerceproductquantityService.create(
 								commerceproductquantity
 							);

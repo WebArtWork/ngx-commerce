@@ -7,6 +7,7 @@ import { TranslateService } from 'src/app/core/modules/translate/translate.servi
 import { FormInterface } from 'src/app/core/modules/form/interfaces/form.interface';
 import { commercecontentFormComponents } from '../../formcomponents/commercecontent.formcomponents';
 import { Router } from '@angular/router';
+import { environment } from 'src/environments/environment';
 
 @Component({
 	templateUrl: './commercecontents.component.html',
@@ -17,10 +18,13 @@ export class CommercecontentsComponent {
 	columns = ['name', 'description'];
 
 	commerce = this._router.url.includes('/commerce/commercecontents/')
-	? this._router.url.replace('/commerce/commercecontents/', '')
-	: '';
+		? this._router.url.replace('/commerce/commercecontents/', '')
+		: environment.commerceId || '';
 
-	form: FormInterface = this._form.getForm('commercecontent', commercecontentFormComponents);
+	form: FormInterface = this._form.getForm(
+		'commercecontent',
+		commercecontentFormComponents
+	);
 
 	config = {
 		create: (): void => {
@@ -30,18 +34,22 @@ export class CommercecontentsComponent {
 					if (this.commerce) {
 						(created as Commercecontent).commerce = this.commerce;
 					}
-					this._commercecontentService.create(created as Commercecontent);
+					this._commercecontentService.create(
+						created as Commercecontent
+					);
 
 					close();
 				}
 			});
 		},
 		update: (doc: Commercecontent): void => {
-			this._form.modal<Commercecontent>(this.form, [], doc).then((updated: Commercecontent) => {
-				this._core.copy(updated, doc);
+			this._form
+				.modal<Commercecontent>(this.form, [], doc)
+				.then((updated: Commercecontent) => {
+					this._core.copy(updated, doc);
 
-				this._commercecontentService.update(doc);
-			});
+					this._commercecontentService.update(doc);
+				});
 		},
 		delete: (doc: Commercecontent): void => {
 			this._alert.question({
@@ -65,7 +73,11 @@ export class CommercecontentsComponent {
 			{
 				icon: 'cloud_download',
 				click: (doc: Commercecontent): void => {
-					this._form.modalUnique<Commercecontent>('commercecontent', 'url', doc);
+					this._form.modalUnique<Commercecontent>(
+						'commercecontent',
+						'url',
+						doc
+					);
 				}
 			}
 		],
@@ -73,13 +85,13 @@ export class CommercecontentsComponent {
 			{
 				icon: 'playlist_add',
 				click: this._bulkManagement(),
-				class: 'playlist',
+				class: 'playlist'
 			},
 			{
 				icon: 'edit_note',
 				click: this._bulkManagement(false),
-				class: 'edit',
-			},
+				class: 'edit'
+			}
 		]
 	};
 
@@ -106,33 +118,50 @@ export class CommercecontentsComponent {
 							if (this.commerce) {
 								commercecontent.commerce = this.commerce;
 							}
-							this._commercecontentService.create(commercecontent);
+							this._commercecontentService.create(
+								commercecontent
+							);
 						}
 					} else {
 						for (const commercecontent of this.rows) {
-							if (!commercecontents.find(
-								localCommercecontent => localCommercecontent._id === commercecontent._id
-							)) {
-								this._commercecontentService.delete(commercecontent);
+							if (
+								!commercecontents.find(
+									(localCommercecontent) =>
+										localCommercecontent._id ===
+										commercecontent._id
+								)
+							) {
+								this._commercecontentService.delete(
+									commercecontent
+								);
 							}
 						}
 
 						for (const commercecontent of commercecontents) {
 							const localCommercecontent = this.rows.find(
-								localCommercecontent => localCommercecontent._id === commercecontent._id
+								(localCommercecontent) =>
+									localCommercecontent._id ===
+									commercecontent._id
 							);
 
 							if (localCommercecontent) {
-								this._core.copy(commercecontent, localCommercecontent);
+								this._core.copy(
+									commercecontent,
+									localCommercecontent
+								);
 
-								this._commercecontentService.update(localCommercecontent);
+								this._commercecontentService.update(
+									localCommercecontent
+								);
 							} else {
 								if (this.commerce) {
 									commercecontent.commerce = this.commerce;
 								}
 								commercecontent.__created = false;
 
-								this._commercecontentService.create(commercecontent);
+								this._commercecontentService.create(
+									commercecontent
+								);
 							}
 						}
 					}

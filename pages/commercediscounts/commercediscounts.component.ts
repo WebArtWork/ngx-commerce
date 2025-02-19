@@ -7,6 +7,7 @@ import { TranslateService } from 'src/app/core/modules/translate/translate.servi
 import { FormInterface } from 'src/app/core/modules/form/interfaces/form.interface';
 import { commercediscountFormComponents } from '../../formcomponents/commercediscount.formcomponents';
 import { Route, Router } from '@angular/router';
+import { environment } from 'src/environments/environment';
 
 @Component({
 	templateUrl: './commercediscounts.component.html',
@@ -18,9 +19,12 @@ export class CommercediscountsComponent {
 
 	commerce = this._router.url.includes('/commerce/commercediscounts/')
 		? this._router.url.replace('/commerce/commercediscounts/', '')
-		: '';
+		: environment.commerceId || '';
 
-	form: FormInterface = this._form.getForm('commercediscount', commercediscountFormComponents);
+	form: FormInterface = this._form.getForm(
+		'commercediscount',
+		commercediscountFormComponents
+	);
 
 	config = {
 		create: (): void => {
@@ -30,18 +34,22 @@ export class CommercediscountsComponent {
 					if (this.commerce) {
 						(created as Commercediscount).commerce = this.commerce;
 					}
-					this._commercediscountService.create(created as Commercediscount);
+					this._commercediscountService.create(
+						created as Commercediscount
+					);
 
 					close();
 				}
 			});
 		},
 		update: (doc: Commercediscount): void => {
-			this._form.modal<Commercediscount>(this.form, [], doc).then((updated: Commercediscount) => {
-				this._core.copy(updated, doc);
+			this._form
+				.modal<Commercediscount>(this.form, [], doc)
+				.then((updated: Commercediscount) => {
+					this._core.copy(updated, doc);
 
-				this._commercediscountService.update(doc);
-			});
+					this._commercediscountService.update(doc);
+				});
 		},
 		delete: (doc: Commercediscount): void => {
 			this._alert.question({
@@ -65,7 +73,11 @@ export class CommercediscountsComponent {
 			{
 				icon: 'cloud_download',
 				click: (doc: Commercediscount): void => {
-					this._form.modalUnique<Commercediscount>('commercediscount', 'url', doc);
+					this._form.modalUnique<Commercediscount>(
+						'commercediscount',
+						'url',
+						doc
+					);
 				}
 			}
 		],
@@ -73,13 +85,13 @@ export class CommercediscountsComponent {
 			{
 				icon: 'playlist_add',
 				click: this._bulkManagement(),
-				class: 'playlist',
+				class: 'playlist'
 			},
 			{
 				icon: 'edit_note',
 				click: this._bulkManagement(false),
-				class: 'edit',
-			},
+				class: 'edit'
+			}
 		]
 	};
 
@@ -94,7 +106,7 @@ export class CommercediscountsComponent {
 		private _form: FormService,
 		private _core: CoreService,
 		private _router: Router
-	) { }
+	) {}
 
 	private _bulkManagement(create = true): () => void {
 		return (): void => {
@@ -106,33 +118,50 @@ export class CommercediscountsComponent {
 							if (this.commerce) {
 								commercediscount.commerce = this.commerce;
 							}
-							this._commercediscountService.create(commercediscount);
+							this._commercediscountService.create(
+								commercediscount
+							);
 						}
 					} else {
 						for (const commercediscount of this.rows) {
-							if (!commercediscounts.find(
-								localCommercediscount => localCommercediscount._id === commercediscount._id
-							)) {
-								this._commercediscountService.delete(commercediscount);
+							if (
+								!commercediscounts.find(
+									(localCommercediscount) =>
+										localCommercediscount._id ===
+										commercediscount._id
+								)
+							) {
+								this._commercediscountService.delete(
+									commercediscount
+								);
 							}
 						}
 
 						for (const commercediscount of commercediscounts) {
 							const localCommercediscount = this.rows.find(
-								localCommercediscount => localCommercediscount._id === commercediscount._id
+								(localCommercediscount) =>
+									localCommercediscount._id ===
+									commercediscount._id
 							);
 
 							if (localCommercediscount) {
-								this._core.copy(commercediscount, localCommercediscount);
+								this._core.copy(
+									commercediscount,
+									localCommercediscount
+								);
 
-								this._commercediscountService.update(localCommercediscount);
+								this._commercediscountService.update(
+									localCommercediscount
+								);
 							} else {
 								if (this.commerce) {
 									commercediscount.commerce = this.commerce;
 								}
 								commercediscount.__created = false;
 
-								this._commercediscountService.create(commercediscount);
+								this._commercediscountService.create(
+									commercediscount
+								);
 							}
 						}
 					}
