@@ -6,6 +6,7 @@ import { CrudService } from 'wacom';
 	providedIn: 'root'
 })
 export class CommerceproductService extends CrudService<Commerceproduct> {
+	
 	constructor() {
 		super({
 			name: 'commerceproduct'

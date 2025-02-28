@@ -11,10 +11,12 @@ const routes: Routes = [
 	{
 		path: 'store/:store',
 		component: CommerceproductquantitiesComponent
-	}, {
+	},
+	{
 		path: 'warehouse/:warehouse',
 		component: CommerceproductquantitiesComponent
-	}, {
+	},
+	{
 		path: 'product/:product',
 		component: CommerceproductquantitiesComponent
 	}
@@ -25,4 +27,4 @@ const routes: Routes = [
 	declarations: [CommerceproductquantitiesComponent],
 	providers: []
 })
-export class CommerceproductquantitiesModule { }
+export class CommerceproductquantitiesModule {}

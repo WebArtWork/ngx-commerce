@@ -25,7 +25,9 @@ export class SelectUserComponent implements OnChanges {
 		return this._commerceproductquantityService.commerceproductquantitys;
 	}
 
-	constructor(private _commerceproductquantityService: CommerceproductquantityService) {}
+	constructor(
+		private _commerceproductquantityService: CommerceproductquantityService
+	) {}
 
 	ngOnChanges(changes: SimpleChanges): void {
 		if (changes['value'] && !changes['value'].firstChange) {

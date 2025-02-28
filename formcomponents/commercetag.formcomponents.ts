@@ -9,11 +9,11 @@ export const commercetagFormComponents = {
 			fields: [
 				{
 					name: 'Placeholder',
-					value: 'fill commercetag title',
+					value: 'fill commercetag title'
 				},
 				{
 					name: 'Label',
-					value: 'Title',
+					value: 'Title'
 				}
 			]
 		},
@@ -23,11 +23,11 @@ export const commercetagFormComponents = {
 			fields: [
 				{
 					name: 'Placeholder',
-					value: 'fill commercetag description',
+					value: 'fill commercetag description'
 				},
 				{
 					name: 'Label',
-					value: 'Description',
+					value: 'Description'
 				}
 			]
 		},
@@ -39,8 +39,7 @@ export const commercetagFormComponents = {
 					name: 'Label',
 					value: 'Header picture'
 				}
-
 			]
-		} 
+		}
 	]
 };

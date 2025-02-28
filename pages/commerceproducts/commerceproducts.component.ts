@@ -18,7 +18,7 @@ import { environment } from 'src/environments/environment';
 })
 export class CommerceproductsComponent {
 	tags: Commercetag[] = [];
-	columns = ['name', 'tags'];
+	columns = ['enabled', 'top','name', 'tags'];
 
 	commerce = this._router.url.includes('/commerce/commerceproducts/')
 		? this._router.url.replace('/commerce/commerceproducts/', '')
@@ -310,6 +310,8 @@ export class CommerceproductsComponent {
 			}
 		]
 	};
+
+	update(doc: Commerceproduct): void {  this._commerceproductService.update(doc) }
 
 	rows: Commerceproduct[] = [];
 	private _page = 1;

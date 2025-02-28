@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AlertService, CoreService, MongoService } from 'wacom';
 import { CommercetagService } from '../../services/commercetag.service';
 import { Commercetag } from '../../interfaces/commercetag.interface';
@@ -14,15 +14,31 @@ import { environment } from 'src/environments/environment';
 	styleUrls: ['./commercetags.component.scss'],
 	standalone: false
 })
-export class CommercetagsComponent {
-	commerce = '';
-	parent = '';
+export class CommercetagsComponent implements OnInit {
+	commerce =
+		this._router.url.match(
+			/commerce\/commercetags\/([^/]+)(?=\/parent|$)/
+		)?.[1] !== 'parent'
+			? this._router.url.match(
+					/commerce\/commercetags\/([^/]+)(?=\/parent|$)/
+			  )?.[1] || environment.commerceId
+			: environment.commerceId;
+
+	parent = this._router.url.match(/parent\/([^/]+)/)?.[1] || '';
+
 	childrenUrl(tag: Commercetag): string {
 		const urls = this._router.url.split('/');
+
 		if (this.parent) {
 			urls.pop();
 		}
+
+		if (!urls.includes('parent')) {
+			urls.push('parent');
+		}
+
 		urls.push(tag._id);
+
 		return urls.join('/');
 	}
 	columns = ['name'];
@@ -40,9 +56,11 @@ export class CommercetagsComponent {
 					if (this.commerce) {
 						(created as Commercetag).commerce = this.commerce;
 					}
+
 					if (this.parent) {
 						(created as Commercetag).parent = this.parent;
 					}
+
 					this._commercetagService.create(created as Commercetag, {
 						callback: () => {
 							this.setTags();
@@ -95,12 +113,23 @@ export class CommercetagsComponent {
 			},
 			{
 				icon: 'arrow_upward',
-				click: (doc: Commercetag) => {
-					const index = this.tags.findIndex((d) => d._id === doc._id);
-					[this.tags[index], this.tags[index - 1]] = [
-						this.tags[index - 1],
-						this.tags[index]
+				click: (doc: Commercetag): void => {
+					const index = this.allTags.findIndex(
+						(d) => d._id === doc._id
+					);
+
+					[this.allTags[index], this.allTags[index - 1]] = [
+						this.allTags[index - 1],
+						this.allTags[index]
 					];
+
+					for (let i = 0; i < this.allTags.length; i++) {
+						if (this.allTags[i].order !== i) {
+							this.allTags[i].order = i;
+
+							this._commercetagService.update(this.allTags[i]);
+						}
+					}
 				}
 			},
 			{
@@ -128,11 +157,21 @@ export class CommercetagsComponent {
 		]
 	};
 
+	get allTags(): Commercetag[] {
+		return this.parent
+			? this._commercetagService.commercetagsByParent[this.parent]
+			: this.commerce
+			? this._commercetagService.commercetagsByCommerce[this.commerce]
+			: this._commercetagService.commercetags;
+	}
+
 	tags: Commercetag[] = JSON.parse(
 		JSON.stringify(this._commercetagService.commercetags)
 	);
-	setTags() {
+
+	setTags(): void {
 		this.tags.splice(0, this.tags.length);
+
 		for (const tag of this._commercetagService.commercetags) {
 			if (!this.commerce && !this.parent) {
 				if (!tag.parent) {
@@ -157,7 +196,7 @@ export class CommercetagsComponent {
 		}
 	}
 
-	update(tag: Commercetag) {
+	update(tag: Commercetag): void {
 		this._commercetagService.update(tag);
 	}
 
@@ -175,18 +214,6 @@ export class CommercetagsComponent {
 	}
 
 	ngOnInit(): void {
-		this.route.params.subscribe((params) => {
-			if (params['parent']) {
-				this.parent = params['parent'];
-			}
-
-			if (params['commerce_id']) {
-				this.commerce = params['commerce_id'];
-			}
-
-			this.commerce = this.commerce || environment.commerceId;
-		});
-
 		this.setTags();
 	}
 
@@ -200,6 +227,7 @@ export class CommercetagsComponent {
 							if (this.commerce) {
 								commercetag.commerce = this.commerce;
 							}
+
 							this._commercetagService.create(commercetag);
 						}
 					} else {
@@ -230,6 +258,7 @@ export class CommercetagsComponent {
 								if (this.commerce) {
 									commercetag.commerce = this.commerce;
 								}
+
 								commercetag.__created = false;
 
 								this._commercetagService.create(commercetag);

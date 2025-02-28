@@ -9,11 +9,11 @@ export const commercewarehouseFormComponents = {
 			fields: [
 				{
 					name: 'Placeholder',
-					value: 'fill commercewarehouse title',
+					value: 'fill commercewarehouse title'
 				},
 				{
 					name: 'Label',
-					value: 'Title',
+					value: 'Title'
 				}
 			]
 		},
@@ -23,13 +23,13 @@ export const commercewarehouseFormComponents = {
 			fields: [
 				{
 					name: 'Placeholder',
-					value: 'fill commercewarehouse description',
+					value: 'fill commercewarehouse description'
 				},
 				{
 					name: 'Label',
-					value: 'Description',
+					value: 'Description'
 				}
 			]
 		}
 	]
-}
+};

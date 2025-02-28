@@ -8,7 +8,7 @@ const routes: Routes = [
 	{
 		path: '',
 		component: CommerceproductsComponent
-	}, 
+	},
 	{
 		path: ':commerce_id',
 		component: CommerceproductsComponent
@@ -20,4 +20,4 @@ const routes: Routes = [
 	declarations: [CommerceproductsComponent],
 	providers: []
 })
-export class CommerceproductsModule { }
+export class CommerceproductsModule {}

@@ -7,7 +7,7 @@ const routes: Routes = [
 	{
 		path: '',
 		component: CommercecontentsComponent
-	}, 
+	},
 	{
 		path: ':commerce_id',
 		component: CommercecontentsComponent

@@ -1,14 +1,21 @@
-<wtable title="Commerceorders" [columns]="columns" [config]="config" [rows]="rows">
+<wtable
+	title="Orders"
+	[columns]="columns"
+	[config]="config"
+	[rows]="rows"
+>
 	<ng-template cell="status" let-element>
-		<wselect [select]="element.status" (modelChange)="setStatus(element, $event)"
-			[items]="['new', 'ordered', 'preparing', 'sent', 'completed']"></wselect>
+		<wselect
+			[select]="element.status"
+			(modelChange)="setStatus(element, $event)"
+			[items]="['new', 'ordered', 'preparing', 'sent', 'completed']"
+		></wselect>
 	</ng-template>
-	<ng-template cell="id" let-element>
-		{{element._id}}
-	</ng-template>
+	<ng-template cell="id" let-element> {{element._id}} </ng-template>
 	<ng-template cell="products" let-element>
 		<div *ngFor="let product of element.products">
-			{{product?.product?.name}} {{product?.product?.price}} грн x {{product?.quantity}} шт
+			{{product?.product?.name}} {{product?.product?.price}} грн x
+			{{product?.quantity}} шт
 		</div>
 	</ng-template>
 	<ng-template cell="information" let-element>

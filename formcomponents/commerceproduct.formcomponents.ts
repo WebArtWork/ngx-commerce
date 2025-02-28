@@ -9,11 +9,11 @@ export const commerceproductFormComponents = {
 			fields: [
 				{
 					name: 'Placeholder',
-					value: 'fill commerceproduct title',
+					value: 'fill commerceproduct title'
 				},
 				{
 					name: 'Label',
-					value: 'Title',
+					value: 'Title'
 				}
 			]
 		},
@@ -23,11 +23,11 @@ export const commerceproductFormComponents = {
 			fields: [
 				{
 					name: 'Placeholder',
-					value: 'fill commerceproduct description',
+					value: 'fill commerceproduct description'
 				},
 				{
 					name: 'Label',
-					value: 'Description',
+					value: 'Description'
 				}
 			]
 		},
@@ -37,11 +37,11 @@ export const commerceproductFormComponents = {
 			fields: [
 				{
 					name: 'Placeholder',
-					value: 'Select tags',
+					value: 'Select tags'
 				},
 				{
 					name: 'Label',
-					value: 'Tags',
+					value: 'Tags'
 				},
 				{
 					name: 'Multiple',
@@ -59,11 +59,11 @@ export const commerceproductFormComponents = {
 			fields: [
 				{
 					name: 'Placeholder',
-					value: 'fill commerceproduct country',
+					value: 'fill commerceproduct country'
 				},
 				{
 					name: 'Label',
-					value: 'Country',
+					value: 'Country'
 				}
 			]
 		},
@@ -73,11 +73,11 @@ export const commerceproductFormComponents = {
 			fields: [
 				{
 					name: 'Placeholder',
-					value: 'fill commerceproduct volume',
+					value: 'fill commerceproduct volume'
 				},
 				{
 					name: 'Label',
-					value: 'Volume',
+					value: 'Volume'
 				}
 			]
 		},
@@ -87,11 +87,11 @@ export const commerceproductFormComponents = {
 			fields: [
 				{
 					name: 'Placeholder',
-					value: 'fill commerceproduct weight',
+					value: 'fill commerceproduct weight'
 				},
 				{
 					name: 'Label',
-					value: 'Weight',
+					value: 'Weight'
 				}
 			]
 		},
@@ -101,63 +101,67 @@ export const commerceproductFormComponents = {
 			fields: [
 				{
 					name: 'Placeholder',
-					value: 'fill commerceproduct battery',
+					value: 'fill commerceproduct battery'
 				},
 				{
 					name: 'Label',
-					value: 'Battery',
+					value: 'Battery'
 				}
 			]
-		},		{
+		},
+		{
 			name: 'Text',
 			key: 'power',
 			fields: [
 				{
 					name: 'Placeholder',
-					value: 'fill commerceproduct power',
+					value: 'fill commerceproduct power'
 				},
 				{
 					name: 'Label',
-					value: 'Power',
+					value: 'Power'
 				}
 			]
-		},		{
+		},
+		{
 			name: 'Text',
 			key: 'atomizerType',
 			fields: [
 				{
 					name: 'Placeholder',
-					value: 'fill commerceproduct atomizerType',
+					value: 'fill commerceproduct atomizerType'
 				},
 				{
 					name: 'Label',
-					value: 'AtomizerType',
+					value: 'AtomizerType'
 				}
 			]
-		},		{
+		},
+		{
 			name: 'Text',
 			key: 'warranty',
 			fields: [
 				{
 					name: 'Placeholder',
-					value: 'fill commerceproduct warranty',
+					value: 'fill commerceproduct warranty'
 				},
 				{
 					name: 'Label',
-					value: 'Warranty',
+					value: 'Warranty'
 				}
 			]
-		},		{
+		},
+		{
 			name: 'Text',
 			key: 'type',
 			fields: [
 				{
 					name: 'Placeholder',
-					value: 'fill commerceproduct type',
+					value: 'fill commerceproduct type'
 				},
 				{
 					name: 'Label',
-					value: 'Type',
+					value: 'Type'
 				}
 			]
 		},
@@ -167,11 +171,11 @@ export const commerceproductFormComponents = {
 			fields: [
 				{
 					name: 'Placeholder',
-					value: 'fill commerceproduct price',
+					value: 'fill commerceproduct price'
 				},
 				{
 					name: 'Label',
-					value: 'Price',
+					value: 'Price'
 				}
 			]
 		},
@@ -196,4 +200,4 @@ export const commerceproductFormComponents = {
 			]
 		}
 	]
-}
+};

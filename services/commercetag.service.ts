@@ -10,6 +10,10 @@ export class CommercetagService extends CrudService<Commercetag> {
 
 	commercetagsByAuthor: Record<string, Commercetag[]> = {};
 
+	commercetagsByCommerce: Record<string, Commercetag[]> = {};
+
+	commercetagsByParent: Record<string, Commercetag[]> = {};
+
 	constructor() {
 		super({
 			name: 'commercetag'
@@ -18,5 +22,19 @@ export class CommercetagService extends CrudService<Commercetag> {
 		this.get();
 
 		this.filteredDocuments(this.commercetagsByAuthor);
+
+		this.filteredDocuments(
+			this.commercetagsByCommerce,
+			'commerce',
+			(doc) => !doc.parent,
+			(a, b) => a.order - b.order
+		);
+
+		this.filteredDocuments(
+			this.commercetagsByParent,
+			'parent',
+			(doc) => !!doc.parent,
+			(a, b) => a.order - b.order
+		);
 	}
 }

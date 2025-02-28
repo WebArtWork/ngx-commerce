@@ -9,11 +9,11 @@ export const commerceportfolioFormComponents = {
 			fields: [
 				{
 					name: 'Placeholder',
-					value: 'fill commerceportfolio title',
+					value: 'fill commerceportfolio title'
 				},
 				{
 					name: 'Label',
-					value: 'Title',
+					value: 'Title'
 				}
 			]
 		},
@@ -23,13 +23,13 @@ export const commerceportfolioFormComponents = {
 			fields: [
 				{
 					name: 'Placeholder',
-					value: 'fill commerceportfolio description',
+					value: 'fill commerceportfolio description'
 				},
 				{
 					name: 'Label',
-					value: 'Description',
+					value: 'Description'
 				}
 			]
 		}
 	]
-}
+};

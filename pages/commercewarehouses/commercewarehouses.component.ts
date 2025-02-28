@@ -70,15 +70,15 @@ export class CommercewarehousesComponent {
 			});
 		},
 		buttons: [
-			{
-				icon: '1x_mobiledata',
-				hrefFunc: (doc: Commercewarehouse): string => {
-					return (
-						'/commerce/commerceproductquantities/warehouse/' +
-						doc._id
-					);
-				}
-			},
+			// {
+			// 	icon: '1x_mobiledata',
+			// 	hrefFunc: (doc: Commercewarehouse): string => {
+			// 		return (
+			// 			'/commerce/commerceproductquantities/warehouse/' +
+			// 			doc._id
+			// 		);
+			// 	}
+			// },
 			{
 				icon: 'cloud_download',
 				click: (doc: Commercewarehouse): void => {

@@ -68,12 +68,12 @@ export class CommercestoresComponent {
 			});
 		},
 		buttons: [
-			{
-				icon: '1x_mobiledata',
-				hrefFunc: (doc: Commercestore): string => {
-					return '/commerceproductquantities/store/' + doc._id;
-				}
-			},
+			// {
+			// 	icon: '1x_mobiledata',
+			// 	hrefFunc: (doc: Commercestore): string => {
+			// 		return '/commerce/commerceproductquantities/store/' + doc._id;
+			// 	}
+			// },
 			{
 				icon: 'cloud_download',
 				click: (doc: Commercestore): void => {
