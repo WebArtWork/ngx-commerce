@@ -1,9 +1,4 @@
-<wtable
-	title="Orders"
-	[columns]="columns"
-	[config]="config"
-	[rows]="rows"
->
+<wtable title="Заамовлення" [columns]="columns" [config]="config" [rows]="rows">
 	<ng-template cell="status" let-element>
 		<wselect
 			[select]="element.status"

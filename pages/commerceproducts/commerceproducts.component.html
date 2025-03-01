@@ -1,12 +1,12 @@
-<wtable title="Products" [columns]="columns" [config]="config" [rows]="rows">
-  <ng-template cell="enabled" let-element>
+<wtable title="Товари" [columns]="columns" [config]="config" [rows]="rows">
+	<ng-template cell="enabled" let-element>
 		<winput
 			(wChange)="element.enabled = $event; update(element)"
 			[value]="element.enabled"
 			type="checkbox"
 		></winput>
 	</ng-template>
-  <ng-template cell="top" let-element>
+	<ng-template cell="top" let-element>
 		<winput
 			(wChange)="element.top = $event; update(element)"
 			[value]="element.top"
